@@ -7,7 +7,8 @@
 		"silverstripe/framework": "3.4.0",
 		"silverstripe/reports": "3.4.0",
 		"silverstripe/siteconfig": "3.4.0",
-		"silverstripe-themes/simple": "3.1.*"
+		"silverstripe-themes/simple": "3.1.*",
+		"unclecheese/betterbuttons": "1.2.*"
 	},
 	"require-dev": {
 		"phpunit/PHPUnit": "~3.7@stable"
