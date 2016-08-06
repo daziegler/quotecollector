@@ -1,0 +1,7 @@
+---
+Name: mysiteroutes
+After: framework/routes#coreroutes
+---
+Director:
+  rules:
+    'delete///$ID!': 'QuotePage_Controller'

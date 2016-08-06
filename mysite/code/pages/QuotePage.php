@@ -30,7 +30,8 @@ class QuotePage extends Page{
 class QuotePage_Controller extends Page_Controller{
 
     public static $allowed_actions = array (
-        'QuoteForm'
+        'QuoteForm',
+        'delete'
     );
 
     function QuoteForm() {
@@ -54,5 +55,15 @@ class QuotePage_Controller extends Page_Controller{
         $submission->QuotePageID = $this->ID;
         $submission->write();
         return $this->redirectBack();
+    }
+
+    public function delete(){
+        $QuoteID = $this->request->param('ID');
+
+        if ($QuoteID && $quote = Quote::get()->byID($QuoteID)) {
+            $quote->delete();
+        }
+
+        return array();
     }
 }

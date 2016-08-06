@@ -19,5 +19,6 @@
             </div>
             <div class="col-md-1"></div>
         </div>
+        <a href="{$Top.Link}delete/{$ID}">delete</a>
     <% end_loop %>
 <% end_if %>
