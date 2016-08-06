@@ -38,6 +38,7 @@ class QuotePage_Controller extends Page_Controller{
         $fields = new FieldList(
             new TextField('QuoteHeader'),
             new TextField('OriginalAuthor'),
+            //new TagField('Tags', null, null, 'Quote'),
             new TextareaField('QuoteContent')
         );
         $actions = new FieldList(
@@ -64,6 +65,6 @@ class QuotePage_Controller extends Page_Controller{
             $quote->delete();
         }
 
-        return array();
+        return $this->redirectBack();
     }
 }
