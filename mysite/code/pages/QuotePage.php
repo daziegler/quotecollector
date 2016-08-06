@@ -7,6 +7,7 @@
  * Time: 09:24
  */
 class QuotePage extends Page{
+
     private static $has_many = array(
         'Quotes' => 'Quote'
     );
@@ -26,4 +27,32 @@ class QuotePage extends Page{
     }
 }
 
-class QuotePage_Controller extends Page_Controller{}
+class QuotePage_Controller extends Page_Controller{
+
+    public static $allowed_actions = array (
+        'QuoteForm'
+    );
+
+    function QuoteForm() {
+        $fields = new FieldList(
+            new TextField('QuoteHeader'),
+            new TextField('OriginalAuthor'),
+            new TextareaField('QuoteContent')
+        );
+        $actions = new FieldList(
+            new FormAction('submit', 'Submit')
+        );
+
+        $validator = new RequiredFields('OriginalAuthor', 'QuoteContent');
+
+        return new Form($this, 'QuoteForm', $fields, $actions, $validator);
+    }
+
+    public function submit($data, $form) {
+        $submission = new Quote();
+        $form->saveInto($submission);
+        $submission->QuotePageID = $this->ID;
+        $submission->write();
+        return $this->redirectBack();
+    }
+}

@@ -7,9 +7,10 @@
  * Time: 09:24
  */
 class Quote extends DataObject{
+
     private static $db = array(
-        'QuoteHeader' => 'Varchar',
-        'OriginalAuthor' => 'Varchar',
+        'QuoteHeader' => 'Text',
+        'OriginalAuthor' => 'Text',
         'QuoteContent' => 'HTMLText'
     );
 

@@ -63,6 +63,12 @@ module.exports = function(grunt) {
                     flatten: true,
                     src: '<%= config.node_modules %>/bootstrap/dist/js/bootstrap.min.js',
                     dest: 'js'
+                },{
+                    expand: true,
+                    filter: 'isFile',
+                    flatten: true,
+                    src: '<%= config.node_modules %>/jquery/dist/jquery.min.js',
+                    dest: '../js'
                 }]
             }
         }
