@@ -38,6 +38,7 @@ class QuotePage_Controller extends Page_Controller{
         $fields = new FieldList(
             new TextField('QuoteHeader'),
             new TextField('OriginalAuthor'),
+            new TextField('AdditionalInfo'),
             new CheckboxSetField(
                 $name = "tagField",
                 $title = "Tags",
@@ -68,15 +69,8 @@ class QuotePage_Controller extends Page_Controller{
             $submission ->Tags()->add($quotation);
         }
 
-
         $form->sessionMessage('Quote wurde erfolgreich erstellt.', 'gut');
 
-        // ID | QuoteID | TagID (multiple)
-        // Pro Checkbox in Field: 1 TagID
-        // TagIDs -> $this->QuoteID
-        //DB::getGeneratedID($Quote);
-
-        //print '<pre>';print_r($data);exit();
         return $this->redirectBack();
     }
 

@@ -11,6 +11,7 @@ class Quote extends DataObject{
     private static $db = array(
         'QuoteHeader' => 'Text',
         'OriginalAuthor' => 'Text',
+        'AdditionalInfo' => 'Text',
         'QuoteContent' => 'HTMLText'
     );
 

@@ -9,6 +9,7 @@
                 <p class="quoteContent">$QuoteContent</p>
                 <br />
                 <div class="originalAuthor">$OriginalAuthor</div>
+                <div>$AdditionalInfo</div>
                 <a href="{$Top.Link}delete/{$ID}">delete</a>
                 <% if $Tags %>
                     <ul>
