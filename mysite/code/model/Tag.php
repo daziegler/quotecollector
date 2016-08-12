@@ -11,7 +11,7 @@ class Tag extends DataObject{
         'Title' => 'Varchar'
     );
 
-    private static $belongs_many_many = array(
+    private static $many_many = array(
         'Quote' => 'Quote'
     );
 

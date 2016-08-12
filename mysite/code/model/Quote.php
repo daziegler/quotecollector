@@ -14,7 +14,7 @@ class Quote extends DataObject{
         'QuoteContent' => 'HTMLText'
     );
 
-    private static $many_many = array(
+    private static $belongs_many_many = array(
         'Tags' => 'Tag'
     );
 

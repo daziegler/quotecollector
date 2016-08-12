@@ -62,7 +62,12 @@ class QuotePage_Controller extends Page_Controller{
         $form->saveInto($submission);
         $submission->QuotePageID = $this->ID;
         $submission->write();
-        //$data['tagField']->Quote()->add($submission);
+
+        foreach($data['tagField'] as $key => $value){
+            $quotation = DataObject::get_one('Tag',"ID = ".$value);
+            $submission ->Tags()->add($quotation);
+        }
+
 
         $form->sessionMessage('Quote wurde erfolgreich erstellt.', 'gut');
 
