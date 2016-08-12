@@ -38,7 +38,11 @@ class QuotePage_Controller extends Page_Controller{
         $fields = new FieldList(
             new TextField('QuoteHeader'),
             new TextField('OriginalAuthor'),
-            //new TagField('Tags', null, null, 'Quote'),
+            new CheckboxSetField(
+                $name = "tagField",
+                $title = "Tags",
+                $source = Tag::get()->map('ID', 'Title')
+            ),
             new TextareaField('QuoteContent')
         );
         $actions = new FieldList(
@@ -52,9 +56,22 @@ class QuotePage_Controller extends Page_Controller{
 
     public function submit($data, $form) {
         $submission = new Quote();
+        if(isset($data['tagField'])){
+            $submission->Tags=$data['tagField'];
+        }
         $form->saveInto($submission);
         $submission->QuotePageID = $this->ID;
         $submission->write();
+        //$data['tagField']->Quote()->add($submission);
+
+        $form->sessionMessage('Quote wurde erfolgreich erstellt.', 'gut');
+
+        // ID | QuoteID | TagID (multiple)
+        // Pro Checkbox in Field: 1 TagID
+        // TagIDs -> $this->QuoteID
+        //DB::getGeneratedID($Quote);
+
+        //print '<pre>';print_r($data);exit();
         return $this->redirectBack();
     }
 

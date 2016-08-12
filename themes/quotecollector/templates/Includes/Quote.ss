@@ -13,7 +13,7 @@
                 <% if $Tags %>
                     <ul>
                         <% loop $Tags %>
-                            <li>$Title</li>
+                            <li>Tagtitel: $Title</li>
                         <% end_loop %>
                     </ul>
                 <% end_if %>
