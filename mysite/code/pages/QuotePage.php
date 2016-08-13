@@ -37,15 +37,18 @@ class QuotePage_Controller extends Page_Controller{
     public function index(SS_HTTPRequest $request){
         $quotes = Quote::get()->limit(20);
 
-        if($search = $request->getVar('Keywords')) {
+        if($search = $request->getVar('Author')) {
             $quotes = $quotes->filter(array(
-                'OriginalAuthor:PartialMatch' => $search,
+                'OriginalAuthor:PartialMatch' => $search
+            ));
+        }
+
+        if($search = $request->getVar('AdditionalInfo')) {
+            $quotes = $quotes->filter(array(
                 'AdditionalInfo:PartialMatch' => $search
             ));
         }
 
-
-         // Needed: Tag ID in Quote
         if($tags = $request->getVar('tagField')) {
             $quotes = $quotes->filter(array(
                 'Tags.ID:ExactMatch' => $tags
@@ -112,8 +115,10 @@ class QuotePage_Controller extends Page_Controller{
             $this,
             'QuoteSearchForm',
             FieldList::create(
-                TextField::create('Keywords')
-                    ->setAttribute('placeholder', 'Header, Author, Additional Info etc...'),
+                TextField::create('Author')
+                    ->setAttribute('placeholder', 'Author'),
+                TextField::create('AdditionalInfo')
+                    ->setAttribute('placeholder', 'Additional Information'),
                 CheckboxSetField::create('tagField', 'Tags', Tag::get()->map('ID', 'Title'))
                     ->setValue('0')
             ),
