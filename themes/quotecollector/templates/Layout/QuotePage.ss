@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-offset-1 col-md-5">
         <% if $QuoteForm %>
             <h1>Create a Quote</h1>
             $QuoteForm

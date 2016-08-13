@@ -44,14 +44,13 @@ class QuotePage_Controller extends Page_Controller{
             ));
         }
 
-        /*
-         * Needed: Tag ID in Quote
+
+         // Needed: Tag ID in Quote
         if($tags = $request->getVar('tagField')) {
             $quotes = $quotes->filter(array(
-                'ID:PartialMatch' => $tags
+                'Tags.ID:ExactMatch' => $tags
             ));
         }
-        */
 
         return array (
             'Results' => $quotes
