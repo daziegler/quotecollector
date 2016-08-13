@@ -9,7 +9,7 @@
 class QuotePage extends Page{
 
     private static $has_many = array(
-        'Quotes' => 'Quote'
+        'Tags' => 'Tag'
     );
 
     public function getCMSFields(){

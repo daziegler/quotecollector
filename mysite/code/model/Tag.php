@@ -15,6 +15,10 @@ class Tag extends DataObject{
         'Quote' => 'Quote'
     );
 
+    private static $has_one = array(
+        'QuotePage' => 'QuotePage'
+    );
+    
     public function getCMSFields(){
         $fields = parent::getCMSFields();
         $fields->removeByName('QuoteID');
