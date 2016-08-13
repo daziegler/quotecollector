@@ -7,6 +7,7 @@
 <head>
     <% base_tag %>
     <link rel="shortcut icon" href="$ThemeDir/favicon.ico" />
+    <script src="https://use.fontawesome.com/08c810898a.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">

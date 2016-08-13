@@ -19,6 +19,9 @@ _ss_environment.php
 /themes/quotecollector/develop/node_modules/
 /reports/
 /siteconfig/
+/themes/quotecollector/css
+/themes/quotecollector/js
+/themes/quotecollector/fonts
 
 # ignore IDE folders
 /.idea/

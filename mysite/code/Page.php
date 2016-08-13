@@ -32,6 +32,7 @@ class Page_Controller extends ContentController {
 		parent::init();
         Requirements::javascript($this->ThemeDir()."/js/jquery.min.js");
         Requirements::javascript($this->ThemeDir()."/js/vendor.min.js");
+        Requirements::javascript($this->ThemeDir()."/js/scripts.min.js");
 
         Requirements::css($this->ThemeDir()."/css/theme.min.css");
         Requirements::css($this->ThemeDir()."/css/vendor.min.css");

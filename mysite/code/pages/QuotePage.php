@@ -19,7 +19,7 @@ class QuotePage extends Page{
         $fields->removeByName('Metadata');
 
         $conf = GridFieldConfig_RecordEditor::create();
-        $quoteGrid = GridField::create('Quotes', _t('QuotePage.Quotes', 'Zitate'), $this->Quotes(), $conf);
+        $quoteGrid = GridField::create('Tags', _t('QuotePage.Tags', 'Tags'), $this->Tags(), $conf);
 
         $fields->addFieldToTab('Root.Main', $quoteGrid);
 
