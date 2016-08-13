@@ -34,6 +34,30 @@ class QuotePage_Controller extends Page_Controller{
         'delete'
     );
 
+    public function index(SS_HTTPRequest $request){
+        $quotes = Quote::get()->limit(20);
+
+        if($search = $request->getVar('Keywords')) {
+            $quotes = $quotes->filter(array(
+                'OriginalAuthor:PartialMatch' => $search,
+                'AdditionalInfo:PartialMatch' => $search
+            ));
+        }
+
+        /*
+         * Needed: Tag ID in Quote
+        if($tags = $request->getVar('tagField')) {
+            $quotes = $quotes->filter(array(
+                'ID:PartialMatch' => $tags
+            ));
+        }
+        */
+
+        return array (
+            'Results' => $quotes
+        );
+    }
+
     function QuoteForm() {
         $fields = new FieldList(
             new TextField('QuoteHeader'),
@@ -82,5 +106,27 @@ class QuotePage_Controller extends Page_Controller{
         }
 
         return $this->redirectBack();
+    }
+
+    public function QuoteSearchForm() {
+        $form = Form::create(
+            $this,
+            'QuoteSearchForm',
+            FieldList::create(
+                TextField::create('Keywords')
+                    ->setAttribute('placeholder', 'Header, Author, Additional Info etc...'),
+                CheckboxSetField::create('tagField', 'Tags', Tag::get()->map('ID', 'Title'))
+                    ->setValue('0')
+            ),
+            FieldList::create(
+                FormAction::create('doQuoteSearch','Search')
+            )
+        );
+
+        $form->setFormMethod('GET')
+            ->setFormAction($this->Link())
+            ->disableSecurityToken()
+            ->loadDataFrom($this->request->getVars());
+        return $form;
     }
 }

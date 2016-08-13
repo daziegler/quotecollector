@@ -1,8 +1,7 @@
-<% if $Quotes %>
-    <% loop $Quotes %>
+<% if $Results %>
+    <% loop $Results %>
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
+            <div class="col-md-offset-1 col-md-10">
                 <% if $QuoteHeader %>
                     <h2>$QuoteHeader</h2>
                 <% end_if %>
@@ -19,7 +18,12 @@
                     </ul>
                 <% end_if %>
             </div>
-            <div class="col-md-1"></div>
         </div>
     <% end_loop %>
+<% else %>
+    <div class="row">
+        <div class="col-md-offset-6 col-md-1 center">
+            <h1>NO RESULTS FOUND!</h1>
+        </div>
+    </div>
 <% end_if %>
