@@ -1,22 +1,32 @@
-<div class="row">
 <% if $Results %>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4 center">
+            <h3>Showing results $Results.FirstItem - $Results.LastItem ($Results.getTotalItems total)</h3>
+        </div>
+    </div>
+
+    <div class="row">
     <% loop $Results %>
-        <div class="col-md-offset-1 col-md-5">
+        <div class="col-md-offset-1 col-md-5 quoteWrapper">
             <% if $QuoteHeader %>
                 <h2>$QuoteHeader</h2>
             <% end_if %>
-            <p class="quoteContent">$QuoteContent</p>
-            <br />
-            <div class="originalAuthor">$OriginalAuthor</div>
-            <div>$AdditionalInfo</div>
-            <a href="{$Top.Link}delete/{$ID}">delete</a>
+            <blockquote>
+                <p>$QuoteContent</p>
+                <footer>$OriginalAuthor
+                    <% if $AdditionalInfo %>
+                        in <cite title="Source Title">$AdditionalInfo</cite>
+                    <% end_if %>
+                </footer>
+            </blockquote>
             <% if $Tags %>
-                <ul>
+                <ul class="list-inline">
                     <% loop $Tags %>
-                        <li>Tagtitel: $Title</li>
+                        <li class="tag">$Title</li>
                     <% end_loop %>
                 </ul>
             <% end_if %>
+            <a href="{$Top.Link}delete/{$ID}">delete</a>
         </div>
     <% end_loop %>
 <% else %>

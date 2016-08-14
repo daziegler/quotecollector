@@ -35,7 +35,7 @@ class QuotePage_Controller extends Page_Controller{
     );
 
     public function index(SS_HTTPRequest $request){
-        $quotes = Quote::get()->limit(20);
+        $quotes = Quote::get();
 
         if($search = $request->getVar('Author')) {
             $quotes = $quotes->filter(array(
@@ -55,8 +55,14 @@ class QuotePage_Controller extends Page_Controller{
             ));
         }
 
+        $paginatedQuotes = PaginatedList::create(
+            $quotes,
+            $request
+        )   ->setPageLength(8)
+            ->setPaginationGetVar('q');
+
         return array (
-            'Results' => $quotes
+            'Results' => $paginatedQuotes
         );
     }
 

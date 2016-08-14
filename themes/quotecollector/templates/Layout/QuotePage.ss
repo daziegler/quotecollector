@@ -18,3 +18,9 @@
 </a>
 
 <% include Quote %>
+
+<div class="row">
+    <div class="col-md-offset-5 col-md-2 center">
+        <% include Pagination %>
+    </div>
+</div>

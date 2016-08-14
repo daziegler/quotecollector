@@ -1,5 +1,25 @@
+/* Mixins */
+.border-radius (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+/* Page */
+.center{
+  display: flex;
+  justify-content: center;
+}
+
 /* Quote */
-.quoteContent{
+.quoteWrapper{
+  padding-bottom:20px;
+}
+
+.tag{
+  background-color: #0d3349;
+  color: #fff;
+  .border-radius(10px);
 }
 
 .originalAuthor{
