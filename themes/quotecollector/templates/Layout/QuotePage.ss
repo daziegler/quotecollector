@@ -1,3 +1,6 @@
+<% if $CurrentMember %>
+<a class="btn btn-default" href="$BaseHref./Security/Logout">Logout</a>
+
 <div class="row">
     <div class="col-md-offset-1 col-md-5">
         <% if $QuoteForm %>
@@ -24,3 +27,6 @@
         <% include Pagination %>
     </div>
 </div>
+<% else %>
+    <% include Restricted %>
+<% end_if %>

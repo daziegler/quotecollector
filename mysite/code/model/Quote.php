@@ -19,7 +19,9 @@ class Quote extends DataObject{
         'Tags' => 'Tag'
     );
 
-
+    private static $has_one = array(
+        'QuoteMember' => 'QuoteMember'
+    );
 
     private static $singular_name = 'Quote';
     private static $plural_name = 'Quotes';
