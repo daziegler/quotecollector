@@ -18,6 +18,9 @@
 .originalAuthor {
   padding-left: 10%;
 }
+.noHeader {
+  margin-top: 60px;
+}
 /* QuotePage */
 .back-to-top {
   background: none;

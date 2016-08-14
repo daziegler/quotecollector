@@ -10,8 +10,10 @@
         <div class="col-md-offset-1 col-md-5 quoteWrapper">
             <% if $QuoteHeader %>
                 <h2>$QuoteHeader</h2>
+                <blockquote>
+            <% else %>
+                <blockquote class="noHeader">
             <% end_if %>
-            <blockquote>
                 <p>$QuoteContent</p>
                 <footer>$OriginalAuthor
                     <% if $AdditionalInfo %>
