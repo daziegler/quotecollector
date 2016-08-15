@@ -6,6 +6,16 @@
     </div>
 
     <div class="row">
+
+    <%-- $CurrentMember.ID = $Quote.QuoteMemberID
+    <% if $CurrentMember.ID == $QuoteMemberID %>
+    <% else %>
+        You Have no Quotes yet!
+    <% end_if %>
+
+     Needs to be finished, doesnt work
+    --%>
+
     <% loop $Results %>
         <div class="col-md-offset-1 col-md-5 quoteWrapper">
             <% if $QuoteHeader %>

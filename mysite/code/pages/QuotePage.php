@@ -49,6 +49,12 @@ class QuotePage_Controller extends Page_Controller{
             ));
         }
 
+        if($search = $request->getVar('QuoteContent')) {
+            $quotes = $quotes->filter(array(
+                'QuoteContent:PartialMatch' => $search
+            ));
+        }
+
         if($tags = $request->getVar('tagField')) {
             $quotes = $quotes->filter(array(
                 'Tags.ID:ExactMatch' => $tags
@@ -94,6 +100,10 @@ class QuotePage_Controller extends Page_Controller{
         }
         $form->saveInto($submission);
         $submission->QuotePageID = $this->ID;
+
+        $userID = Member::CurrentUser()->ID;
+        $submission->QuoteMemberID = $userID;
+
         $submission->write();
 
         foreach($data['tagField'] as $key => $value){
@@ -125,6 +135,8 @@ class QuotePage_Controller extends Page_Controller{
                     ->setAttribute('placeholder', 'Author'),
                 TextField::create('AdditionalInfo')
                     ->setAttribute('placeholder', 'Additional Information'),
+                TextField::create('QuoteContent')
+                    ->setAttribute('placeholder', 'Content of the Quote'),
                 CheckboxSetField::create('tagField', 'Tags', Tag::get()->map('ID', 'Title'))
                     ->setValue('0')
             ),
