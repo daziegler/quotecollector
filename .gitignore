@@ -32,6 +32,3 @@ _ss_environment.php
 /install.php
 /install-frameworkmissing.html
 /themes/simple/
-
-# ignore config file
-/mysite/_config.php

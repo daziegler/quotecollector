@@ -4,7 +4,7 @@ global $project;
 $project = 'quotecollector';
 
 global $database;
-$database = 'quotecollector';
+$database = 'daziegler_quotecollector';
 
 // Use _ss_environment.php file for configuration
 require_once("conf/ConfigureFromEnv.php");
