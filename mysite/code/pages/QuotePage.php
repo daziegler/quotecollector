@@ -35,7 +35,10 @@ class QuotePage_Controller extends Page_Controller{
     );
 
     public function index(SS_HTTPRequest $request){
-        $quotes = Quote::get()->innerJoin("Member", "\"Quote\".\"QuoteMemberID\" = \"Member\".\"ID\"");
+        $userID = Member::currentUserID();
+        $quotes = Quote::get()->filter(array(
+             'QuoteMemberID' => $userID
+        ));
 
         if($search = $request->getVar('Author')) {
             $quotes = $quotes->filter(array(
