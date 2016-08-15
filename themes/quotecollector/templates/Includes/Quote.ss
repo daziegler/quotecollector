@@ -24,6 +24,7 @@
             <% else %>
                 <blockquote class="noHeader">
             <% end_if %>
+                <p>DEBUG: QuoteID = $ID | QuoteMemberID = $QuoteMemberID</p>
                 <p>$QuoteContent</p>
                 <footer>$OriginalAuthor
                     <% if $AdditionalInfo %>
