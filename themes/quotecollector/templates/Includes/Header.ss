@@ -1,4 +1,4 @@
-<header id="header" class="alt">
+<header id="header">
     <h1>$SiteConfig.Title</h1>
     <% if $Slogan %>
         <p>$SiteConfig.Tagline</p><br />
