@@ -29,7 +29,7 @@
                             <% end_loop %>
                         </ul>
                     <% end_if %>
-                    <a href="{$Top.Link}delete/{$ID}">delete</a>
+                    <%--<a href="{$Top.Link}edit/{$ID}">edit</a> | --%><a href="{$Top.Link}delete/{$ID}">delete</a>
                 </div>
             <% end_loop %>
         </div>

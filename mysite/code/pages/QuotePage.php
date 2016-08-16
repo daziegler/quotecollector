@@ -77,15 +77,17 @@ class QuotePage_Controller extends Page_Controller{
 
     function QuoteForm() {
         $fields = new FieldList(
-            new TextField('QuoteHeader'),
-            new TextField('OriginalAuthor'),
-            new TextField('AdditionalInfo'),
-            new CheckboxSetField(
-                $name = "tagField",
-                $title = "Tags",
-                $source = Tag::get()->map('ID', 'Title')
-            ),
-            new TextareaField('QuoteContent')
+            TextField::create('QuoteHeader')
+                ->setAttribute('placeholder', 'Header'),
+            TextField::create('OriginalAuthor')
+                ->setAttribute('placeholder', 'Author'),
+            TextField::create('AdditionalInfo')
+                ->setAttribute('placeholder', 'Additional Information'),
+            CheckboxSetField::create('tagField', 'Tags', Tag::get()->map('ID', 'Title'))
+                ->addExtraClass("tagField")
+                ->setValue('0'),
+            TextAreaField::create('QuoteContent')
+                ->setAttribute('placeholder', 'Content of the Quote')
         );
         $actions = new FieldList(
             new FormAction('submit', 'Submit')
@@ -129,6 +131,17 @@ class QuotePage_Controller extends Page_Controller{
         return $this->redirectBack();
     }
 
+    /*
+    public function edit(){
+        $QuoteID = $this->request->param('ID');
+
+        if ($QuoteID && $quote = Quote::get()->byID($QuoteID)) {
+
+        }
+
+        return $this->redirectBack();
+    }*/
+
     public function QuoteSearchForm() {
         $form = Form::create(
             $this,
@@ -141,6 +154,7 @@ class QuotePage_Controller extends Page_Controller{
                 TextField::create('QuoteContent')
                     ->setAttribute('placeholder', 'Content of the Quote'),
                 CheckboxSetField::create('tagField', 'Tags', Tag::get()->map('ID', 'Title'))
+                    ->addExtraClass("tagField")
                     ->setValue('0')
             ),
             FieldList::create(
