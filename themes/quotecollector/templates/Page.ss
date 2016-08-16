@@ -15,6 +15,7 @@
     <title>$SiteConfig.Title - $Title - $SiteConfig.Tagline</title>
 </head>
 <body>
+    <% include Header %>
     <div class="container-fluid">
         $Layout
     </div>

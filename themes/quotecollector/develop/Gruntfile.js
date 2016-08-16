@@ -13,8 +13,8 @@ module.exports = function(grunt) {
             scripts_build: ['../js'],
             styles: ['css'],
             styles_build: ['../css'],
-            vendorStyles: ['css/bootstrap.min.css'],
-            vendorScripts: ['js/bootstrap.min.js']
+            vendorStyles: ['css/bootstrap.min.css', 'css/font-awesome.min.css', 'css/main.css'],
+            vendorScripts: ['js/bootstrap.min.js', 'js/jquery.scrollex.min.js', 'js/jquery.scrolly.min.js', 'js/main.js', 'js/skel.min.js', 'js/util.js']
         },
         uglify: {
             options: {

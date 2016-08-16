@@ -1,5 +1,9 @@
-<div class="row">
-    <div class="col-md-offset-1 col-md-10 adminLogin">
-        $Form
+<div id="main">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+                $Form
+            </div>
+        </div>
     </div>
 </div>
