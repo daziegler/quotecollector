@@ -1,6 +1,6 @@
 {
   "name": "quotecollector",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "dependencies": {
     "bootstrap": "3.3.6",
     "grunt": "~1.0.1",
