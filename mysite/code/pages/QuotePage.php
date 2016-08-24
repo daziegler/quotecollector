@@ -31,6 +31,7 @@ class QuotePage_Controller extends Page_Controller{
 
     public static $allowed_actions = array (
         'QuoteForm',
+        'edit',
         'delete'
     );
 
@@ -75,7 +76,13 @@ class QuotePage_Controller extends Page_Controller{
         );
     }
 
-    function QuoteForm() {
+    public function QuoteForm(){
+
+        $action = $this->request->param('Action');
+        $id = (int)$this->request->param('ID');
+        $quote = ($id) ? $quote = Quote::get()->byID($id) : false;
+        $submitCaption = ($quote) ? 'Edit' : 'Create';
+
         $fields = new FieldList(
             TextField::create('QuoteHeader')
                 ->setAttribute('placeholder', 'Header'),
@@ -84,41 +91,47 @@ class QuotePage_Controller extends Page_Controller{
             TextField::create('AdditionalInfo')
                 ->setAttribute('placeholder', 'Additional Information'),
             CheckboxSetField::create('tagField', 'Tags', Tag::get()->map('ID', 'Title'))
-                ->addExtraClass("tagField")
-                ->setValue('0'),
-            TextAreaField::create('QuoteContent')
-                ->setAttribute('placeholder', 'Content of the Quote')
+                ->addExtraClass("tagField"),
+            HtmlEditorField::create('QuoteContent')
+                ->setAttribute('placeholder', 'Content of the Quote'),
+            HiddenField::create('ID', 'ID')
+                ->setValue($id)
         );
-        $actions = new FieldList(
-            new FormAction('submit', 'Submit')
+        $actions = FieldList::create(
+            FormAction::create('submit', $submitCaption)
         );
+        $validator = RequiredFields::create('OriginalAuthor', 'QuoteContent');
 
-        $validator = new RequiredFields('OriginalAuthor', 'QuoteContent');
+        $form = new Form($this, 'QuoteForm', $fields, $actions, $validator);
 
-        return new Form($this, 'QuoteForm', $fields, $actions, $validator);
+        if ($quote) {
+            $form->loadDataFrom($quote);
+        }
+
+        return $form;
     }
 
     public function submit($data, $form) {
-        $submission = new Quote();
+        $quote = new Quote();
         if(isset($data['tagField'])){
-            $submission->Tags=$data['tagField'];
+            $quote->Tags=$data['tagField'];
         }
-        $form->saveInto($submission);
-        $submission->QuotePageID = $this->ID;
+        $form->saveInto($quote);
+        $quote->QuotePageID = $this->ID;
 
         $userID = Member::CurrentUser()->ID;
-        $submission->QuoteMemberID = $userID;
+        $quote->QuoteMemberID = $userID;
 
-        $submission->write();
+        $quote->ID = $data['ID'];
+        $id = $quote->write();
+        $quote->write();
 
         foreach($data['tagField'] as $key => $value){
             $quotation = DataObject::get_one('Tag',"ID = ".$value);
-            $submission ->Tags()->add($quotation);
+            $quote ->Tags()->add($quotation);
         }
 
-        $form->sessionMessage('Quote wurde erfolgreich erstellt.', 'gut');
-
-        return $this->redirectBack();
+        return $this->redirect($this->Link() . "edit/$id");
     }
 
     public function delete(){
@@ -130,17 +143,6 @@ class QuotePage_Controller extends Page_Controller{
 
         return $this->redirectBack();
     }
-
-    /*
-    public function edit(){
-        $QuoteID = $this->request->param('ID');
-
-        if ($QuoteID && $quote = Quote::get()->byID($QuoteID)) {
-
-        }
-
-        return $this->redirectBack();
-    }*/
 
     public function QuoteSearchForm() {
         $form = Form::create(

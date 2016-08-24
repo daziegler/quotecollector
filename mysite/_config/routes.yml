@@ -5,3 +5,4 @@ After: framework/routes#coreroutes
 Director:
   rules:
     'delete///$ID!': 'QuotePage_Controller'
+    'edit///$ID!': 'QuotePage_Controller'

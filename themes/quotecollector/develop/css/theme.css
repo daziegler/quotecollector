@@ -25,9 +25,6 @@
   margin-top: 60px;
 }
 /* QuotePage */
-.quoteForm {
-  padding-top: 8.33333333%;
-}
 .logoutButton {
   padding-top: 10px;
 }
@@ -44,8 +41,8 @@
 .field label {
   margin-bottom: 5px;
 }
-.action {
-  padding-top: 5px;
+.Actions {
+  padding-top: 10px;
 }
 .back-to-top {
   background: none;

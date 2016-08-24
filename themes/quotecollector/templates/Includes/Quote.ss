@@ -6,7 +6,6 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-
             <% loop $Results %>
                 <div class="col-md-offset-1 col-md-5 col-sm-6 col-xs-12 quoteWrapper">
                     <% if $QuoteHeader %>
@@ -29,7 +28,7 @@
                             <% end_loop %>
                         </ul>
                     <% end_if %>
-                    <%--<a href="{$Top.Link}edit/{$ID}">edit</a> | --%><a href="{$Top.Link}delete/{$ID}">delete</a>
+                    <a href="{$Top.Link}edit/{$ID}">edit</a> | <a href="{$Top.Link}delete/{$ID}">delete</a>
                 </div>
             <% end_loop %>
         </div>
